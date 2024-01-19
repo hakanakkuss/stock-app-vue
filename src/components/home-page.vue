@@ -1,48 +1,31 @@
 <template>
-
-<div class="mt-24 flex max-w-screen-xl mx-auto justify-center items-center">
-  <a-table :columns="columns" :dataSource="data.result" rowKey="code">
-    <template #code="{ text }">
-      {{ text }}
-    </template>
-  </a-table>
-</div>
-
+   <div class="mt-24 flex mx-auto justify-center items-center">
+     <el-table :data="data.result" width="100" height="450" >
+       <el-table-column prop="code" label="Code" width="180">
+         <template v-slot="{ row }">
+           <el-link @click="handleCodeClick(row)">{{ row.code }}</el-link>
+         </template>
+       </el-table-column>
+       <el-table-column prop="rate" label="Rate" width="180" />
+       <el-table-column prop="max" label="Max" width="180" />
+       <el-table-column prop="min" label="Min" width="180"/>
+       <el-table-column prop="time" label="Time" width="180" />
+     </el-table>
+   </div>
 </template>
 
 <script>
-
-import { Table } from 'ant-design-vue';
-
 export default {
   components : {
-    'a-table': Table,
   },
+  methods: {
+    handleCodeClick(row) {
+      this.$router.push({ path: `/${row.code}` })
+    },
+  },
+
 data() {
   return {
-    columns: [
-      {
-        title: 'Code',
-        dataIndex: 'code',
-        key: 'code',
-      },
-      {
-        title: 'Rate',
-        dataIndex: 'rate',
-        key: 'rate',
-      },
-      {
-        title: 'Min',
-        dataIndex: 'min',
-        key: 'min',
-      },
-      {
-        title: 'Max',
-        dataIndex: 'max',
-        key: 'max',
-      },
-
-    ],
     data: {
       "success": true,
       "result": [
@@ -7544,3 +7527,4 @@ data() {
 }
 
 </script>
+
