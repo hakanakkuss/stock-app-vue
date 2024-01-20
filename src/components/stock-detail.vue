@@ -11,7 +11,6 @@
 <script>
 export default {
   mounted() {
-    this.loadTradingViewChart()
     if (this.$route.params.code) {
       this.loadTradingViewChart(this.$route.params.code);
     }
@@ -46,3 +45,4 @@ export default {
   },
 };
 </script>
+

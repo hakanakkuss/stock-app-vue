@@ -1,26 +1,33 @@
 <template>
    <div class="mt-24 flex mx-auto justify-center items-center">
-     <el-table :data="data.result" width="100" height="450" >
-       <el-table-column prop="code" label="Code" width="180">
-         <template v-slot="{ row }">
-           <el-link @click="handleCodeClick(row)">{{ row.code }}</el-link>
+     <el-table :data="data.result" width="300" height="630" border align="center">
+       <el-table-column prop="code" label="Code" width="180" sortable>
+         <template v-slot="{ row }" >
+           <el-icon class="mx-6" :size="16" :color="'green'">
+             <StarFilled v-if="row.favorite" @click="unfavoriteStock(row)" />
+             <Star v-else @click="favoriteStock(row)" />
+           </el-icon>
+           <router-link class="text-neutral-800 font-semibold" :to="{ name: 'StockDetail', params: { code: row.code } }">
+             {{ row.code }}
+           </router-link>
          </template>
        </el-table-column>
-       <el-table-column prop="rate" label="Rate" width="180" />
-       <el-table-column prop="max" label="Max" width="180" />
-       <el-table-column prop="min" label="Min" width="180"/>
-       <el-table-column prop="time" label="Time" width="180" />
+       <el-table-column prop="rate" label="Rate" width="180" sortable align="center"/>
+       <el-table-column prop="max" label="Max" width="180" sortable align="center"/>
+       <el-table-column prop="min" label="Min" width="180" sortable align="center"/>
+       <el-table-column prop="time" label="Time" width="180" align="center"/>
      </el-table>
    </div>
 </template>
 
 <script>
 export default {
-  components : {
-  },
   methods: {
-    handleCodeClick(row) {
-      this.$router.push({ path: `/${row.code}` })
+    favoriteStock(row) {
+      row.favorite = !row.favorite;
+    },
+    unfavoriteStock(row) {
+      row.favorite = !row.favorite;
     },
   },
 
