@@ -4,7 +4,7 @@
        <el-table-column prop="code" label="Code" width="180" sortable>
          <template v-slot="{ row }" >
            <el-icon class="mx-6" :size="16" :color="'green'">
-             <StarFilled v-if="row.favorite" @click="unfavoriteStock(row)" />
+             <StarFilled v-if="row.favorite" @click="favoriteStock(row)" />
              <Star v-else @click="favoriteStock(row)" />
            </el-icon>
            <router-link class="text-neutral-800 font-semibold" :to="{ name: 'StockDetail', params: { code: row.code } }">
@@ -24,9 +24,6 @@
 export default {
   methods: {
     favoriteStock(row) {
-      row.favorite = !row.favorite;
-    },
-    unfavoriteStock(row) {
       row.favorite = !row.favorite;
     },
   },
