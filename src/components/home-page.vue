@@ -1,6 +1,18 @@
 <template>
-   <div class="mt-24 flex mx-auto justify-center items-center">
-     <el-table :data="data.result" width="300" height="630" border align="center">
+  <div class="mt-24 max-w-2xl flex items-center justify-center mx-auto">
+    <span class="text-slate-600 text-lg font-extralight text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
+  </div>
+  <div class="flex items-center justify-center mt-16">
+    <el-input
+        v-model="searchText"
+        placeholder="Search Stock..."
+        @input="handleSearch"
+        class="max-w-52">
+    </el-input>
+  </div>
+   <div class="mt-16 flex mx-auto justify-center items-center">
+     <el-table :data="filteredData" width="300" height="630" border align="center" :search="{ filterMethod: customFilterMethod }">
        <el-table-column prop="code" label="Code" width="180" sortable>
          <template v-slot="{ row }" >
            <el-icon class="mx-6" :size="16" :color="'green'">
@@ -23,9 +35,22 @@
 <script>
 export default {
   methods: {
+    customFilterMethod(value, row) {
+      const code = row.code.toString().toLowerCase();
+      return code.indexOf(value.toLowerCase()) > -1;
+    },
     favoriteStock(row) {
       row.favorite = !row.favorite;
     },
+  },
+  computed: {
+    filteredData() {
+      // Arama işlemi için filtreleme metodu
+      return this.data.result.filter(item => {
+        const code = item.code.toString().toLowerCase();
+        return code.indexOf(this.searchText.toLowerCase()) > -1;
+      });
+    }
   },
 
 data() {
@@ -7524,7 +7549,8 @@ data() {
           "code": "ISKUR"
         }
       ]
-    }
+    },
+    searchText: ''
   }
 }
 
