@@ -3,6 +3,14 @@
     <span class="text-slate-600 text-lg font-extralight text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
   </div>
+  <el-alert
+      v-if="favoritesArray.length > 2"
+      title="Warning Alert"
+      type="warning"
+      description="More text description"
+      show-icon
+      center
+  />
   <div class="flex items-center justify-center mt-16">
     <el-input
         v-model="searchText"
@@ -40,7 +48,17 @@ export default {
       return code.indexOf(value.toLowerCase()) > -1;
     },
     favoriteStock(row) {
-      row.favorite = !row.favorite;
+      if(this.favoritesArray.length < 2) {
+        row.favorite = !row.favorite;
+        this.favoritesArray.push(row.favorite)
+      }else {
+        this.$message({
+          type: 'warning',
+          message: 'You should sign up for more!',
+          style: `width:250px; height:50px; margin-top:80px`
+        });
+      }
+
     },
   },
   computed: {
@@ -55,6 +73,7 @@ export default {
 
 data() {
   return {
+    favoritesArray : [],
     data: {
       "success": true,
       "result": [

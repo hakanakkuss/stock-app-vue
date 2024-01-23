@@ -1,7 +1,11 @@
 <template>
 <navigation-bar />
     <router-view></router-view>
-<footer/>
+  <div class="bg-gray-700 mt-24 w-full h-40">
+  <span class="flex items-center justify-center h-full">
+        Footer
+      </span>
+  </div>
 </template>
 
 <script>
