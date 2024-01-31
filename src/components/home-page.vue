@@ -4,10 +4,10 @@
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
   </div>
   <el-alert
-      v-if="favoritesArray.length > 2"
+      v-if="favoritesArray.length > 5"
       title="Warning Alert"
       type="warning"
-      description="More text description"
+      description="You should sign up for more!"
       show-icon
       center
   />
@@ -48,14 +48,15 @@ export default {
       return code.indexOf(value.toLowerCase()) > -1;
     },
     favoriteStock(row) {
-      if(this.favoritesArray.length < 2) {
+      if(this.favoritesArray.length < 5) {
         row.favorite = !row.favorite;
-        this.favoritesArray.push(row.favorite)
+        this.favoritesArray.push(row.code)
+        this.$store.commit('addToFavorites', row.code);
       }else {
         this.$message({
           type: 'warning',
           message: 'You should sign up for more!',
-          style: `width:250px; height:50px; margin-top:80px`
+          style: `width:250px; height:80px; margin-top:80px`
         });
       }
 
