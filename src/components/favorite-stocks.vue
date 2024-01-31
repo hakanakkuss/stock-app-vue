@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div v-if="favorites.length > 0">
-      <h2>Favorite Stocks</h2>
+    <div class="justify-center flex mt-10" v-if="favorites.length > 0">
       <ul>
         <li v-for="favorite in favorites" :key="favorite.code">
           {{ favorite.code }}
         </li>
       </ul>
     </div>
-    <div v-else>
+    <div v-else class="justify-center flex">
       <span>No favorite stocks added yet.</span>
     </div>
   </div>
