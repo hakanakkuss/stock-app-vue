@@ -3,8 +3,8 @@
     <div v-if="favorites.length > 0">
       <h2>Favorite Stocks</h2>
       <ul>
-        <li v-for="favorite in favorites" :key="favorite">
-          {{ favorite }}
+        <li v-for="favorite in favorites" :key="favorite.code">
+          {{ favorite.code }}
         </li>
       </ul>
     </div>
@@ -20,6 +20,6 @@ export default {
     favorites() {
       return this.$store.getters.getFavorites;
     }
-  }
+  },
 };
 </script>

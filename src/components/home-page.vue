@@ -51,7 +51,7 @@ export default {
       if(this.favoritesArray.length < 5) {
         row.favorite = !row.favorite;
         this.favoritesArray.push(row.code)
-        this.$store.commit('addToFavorites', row.code);
+        this.$store.dispatch('addToFavorites', row);
       }else {
         this.$message({
           type: 'warning',
