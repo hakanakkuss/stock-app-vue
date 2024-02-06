@@ -52,6 +52,8 @@ export default {
         row.favorite = !row.favorite;
         this.favoritesArray.push(row.code)
         this.$store.dispatch('addToFavorites', row);
+        localStorage.setItem('favorites', JSON.stringify(this.favoritesArray));
+
       }else {
         this.$message({
           type: 'warning',
@@ -61,6 +63,12 @@ export default {
       }
 
     },
+  },
+  created() {
+    const favorites = localStorage.getItem('favorites');
+    if (favorites) {
+      this.favoritesArray = JSON.parse(favorites);
+    }
   },
   computed: {
     filteredData() {
