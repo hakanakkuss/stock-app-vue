@@ -7,7 +7,6 @@
       v-if="favoritesArray.length > 15"
       title="Warning Alert"
       type="warning"
-      description="You should sign up for more!"
       show-icon
       center
   />
