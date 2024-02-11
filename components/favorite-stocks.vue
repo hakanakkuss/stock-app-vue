@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-5/6">
     <div class="justify-center flex mt-10" v-if="favorites.length > 0">
       <ul>
         <li v-for="favorite in favorites" :key="favorite.code">
