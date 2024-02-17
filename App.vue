@@ -27,7 +27,7 @@ export default {
 
 <style>
 .contentBg {
-  background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(common-bg.svg);
+  background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(./assets/common-bg.svg);
   height: 100vh;
   min-height: 73rem;
   position: relative;
