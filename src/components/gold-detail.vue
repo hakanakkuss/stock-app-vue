@@ -26,7 +26,6 @@ export default {
         "calendar": true,
       }
     `;
-
     // Widget container'a script'i ekleme
     this.$el.querySelector('.tradingview-widget-container__widget').appendChild(script);
   },

@@ -18,25 +18,25 @@
         class="max-w-52">
     </el-input>
   </div>
-   <div class="mt-14 flex mx-auto justify-center items-center">
-     <el-table :data="filteredData" height="630" border align="center" class="contentBg" :search="{ filterMethod: customFilterMethod }">
-       <el-table-column prop="code" label="Code" width="200" sortable>
-         <template v-slot="{ row }" >
-           <el-icon class="mx-6" :size="16" :color="'green'">
-             <StarFilled v-if="row.favorite" @click="favoriteStock(row)" />
-             <Star v-else @click="favoriteStock(row)" />
-           </el-icon>
-           <router-link class="text-neutral-800 font-semibold" :to="{ name: 'StockDetail', params: { code: row.code } }">
-             {{ row.code }}
-           </router-link>
-         </template>
-       </el-table-column>
-       <el-table-column prop="rate" label="Rate" width="200" sortable align="center"/>
-       <el-table-column prop="max" label="Max" width="200" sortable align="center"/>
-       <el-table-column prop="min" label="Min" width="200" sortable align="center"/>
-       <el-table-column prop="time" label="Time" width="200" align="center"/>
-     </el-table>
-   </div>
+  <div class="mt-14 flex mx-auto justify-center items-center">
+    <el-table :data="filteredData" height="437" border align="center" class="contentBg" :search="{ filterMethod: customFilterMethod }">
+      <el-table-column prop="code" label="Code" width="200" sortable>
+        <template v-slot="{ row }" >
+          <el-icon class="mx-6" :size="16" :color="'green'">
+            <StarFilled v-if="row.favorite" @click="favoriteStock(row)" />
+            <Star v-else @click="favoriteStock(row)" />
+          </el-icon>
+          <router-link class="text-neutral-800 font-semibold" :to="{ name: 'StockDetail', params: { code: row.code } }">
+            {{ row.code }}
+          </router-link>
+        </template>
+      </el-table-column>
+      <el-table-column prop="rate" label="Rate" width="200" sortable align="center"/>
+      <el-table-column prop="max" label="Max" width="200" sortable align="center"/>
+      <el-table-column prop="min" label="Min" width="200" sortable align="center"/>
+      <el-table-column prop="time" label="Time" width="200" align="center"/>
+    </el-table>
+  </div>
   <div id="login" class="contentBg mb-9">
     <div class="flex items-center justify-center h-screen">
       <div class="w-1/3 h-1/3 mx-auto p-6 bg-white rounded-lg shadow-md hover:border-b-gray-300">
@@ -66,9 +66,7 @@
 </template>
 
 <script>
-
 import axios from 'axios';
-
 export default {
   methods: {
     customFilterMethod(value, row) {
@@ -81,7 +79,6 @@ export default {
         this.favoritesArray.push(row.code)
         this.$store.dispatch('addToFavorites', row);
         localStorage.setItem('favorites', JSON.stringify(this.favoritesArray));
-
       }else {
         this.$message({
           type: 'warning',
@@ -90,10 +87,9 @@ export default {
           style: `width:250px; height:80px; margin-top:80px;`
         });
       }
-
     },
     fetchData() {
-      axios.get('https://c28c32a8-dafe-42d2-a2f8-2cbb85eafa58.mock.pstmn.io/stocks')
+      axios.get('https://ca79813d-1c69-48a7-86d6-318a2de6a65c.mock.pstmn.io/stocks')
           .then(response => {
             this.stocks = response.data.result;
           })
@@ -118,16 +114,12 @@ export default {
       });
     }
   },
-
-data() {
-  return {
-    favoritesArray : [],
-    stocks : [],
-    searchText: ''
+  data() {
+    return {
+      favoritesArray : [],
+      stocks : [],
+      searchText: ''
+    }
   }
 }
-
-}
-
 </script>
-
