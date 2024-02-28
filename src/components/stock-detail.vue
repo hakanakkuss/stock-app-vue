@@ -8,9 +8,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted() {
+<script setup>
+  import {onMounted} from "vue";
+
+  onMounted(() => {
     if (this.$route.params.code) {
       this.loadTradingViewChart(this.$route.params.code);
     }
@@ -20,9 +21,9 @@ export default {
         this.loadTradingViewChart(newCode);
       }
     });
-  },
-  methods: {
-    loadTradingViewChart(code) {
+  });
+
+    const loadTradingViewChart = (code) => {
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
       script.type = 'text/javascript';
@@ -41,8 +42,7 @@ export default {
         "support_host": "https://www.tradingview.com"
       }`;
       this.$refs.container.appendChild(script);
-    },
-  },
-};
+    };
+
 </script>
 

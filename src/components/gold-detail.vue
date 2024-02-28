@@ -4,9 +4,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted() {
+<script setup>
+
+import {onMounted} from "vue";
+
+  onMounted (() =>  {
     // TradingView Widget'ını yükleme
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -29,5 +31,5 @@ export default {
     // Widget container'a script'i ekleme
     this.$el.querySelector('.tradingview-widget-container__widget').appendChild(script);
   },
-};
+  );
 </script>

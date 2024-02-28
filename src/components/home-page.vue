@@ -65,15 +65,29 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
-export default {
-  methods: {
-    customFilterMethod(value, row) {
+import { ref, computed, onMounted } from 'vue';
+import {useStore} from "vuex";
+
+const favoritesArray = ref([]);
+const stocks = ref([]);
+const searchText = ref('');
+const store = useStore();
+
+    onMounted(() => {
+      // fetchData()
+      const favorites = localStorage.getItem('favorites');
+      if (favorites) {
+        favoritesArray.value = JSON.parse(favorites);
+      }
+    });
+
+    const customFilterMethod = (value, row) => {
       const code = row.code.toString().toLowerCase();
-      return code.indexOf(value.toLowerCase()) > -1;
-    },
-    favoriteStock(row) {
+      return code.includes(value.toLowerCase());
+    };
+    const favoriteStock = (row) => {
       if(this.favoritesArray.length < 5) {
         row.favorite = !row.favorite;
         this.favoritesArray.push(row.code)
@@ -87,39 +101,21 @@ export default {
           style: `width:250px; height:80px; margin-top:80px;`
         });
       }
-    },
-    fetchData() {
+    };
+
+    const filteredData = computed(() => {
+      return stocks.value.filter(item => {
+        const code = item.code.toString().toLowerCase();
+        return code.includes(searchText.value.toLowerCase());
+      });
+    });
+    const fetchData = () => {
       axios.get('https://ca79813d-1c69-48a7-86d6-318a2de6a65c.mock.pstmn.io/stocks')
           .then(response => {
-            this.stocks = response.data.result;
+            stocks.value = response.data.result;
           })
           .catch(error => {
             console.error('Error:', error);
           });
-    }
-  },
-  created() {
-    this.fetchData();
-    const favorites = localStorage.getItem('favorites');
-    if (favorites) {
-      this.favoritesArray = JSON.parse(favorites);
-    }
-  },
-  computed: {
-    filteredData() {
-      // Arama işlemi için filtreleme metodu
-      return this.stocks.filter(item => {
-        const code = item.code.toString().toLowerCase();
-        return code.indexOf(this.searchText.toLowerCase()) > -1;
-      });
-    }
-  },
-  data() {
-    return {
-      favoritesArray : [],
-      stocks : [],
-      searchText: ''
-    }
-  }
-}
+    };
 </script>
