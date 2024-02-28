@@ -25,11 +25,11 @@ export default {
 };
 </script>
 
-<!--<style>-->
-<!--/*.contentBg {*/-->
-<!--/*  background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(src/assets/common-bg.svg);*/-->
-<!--/*  height: 100vh;*/-->
-<!--/*  min-height: 73rem;*/-->
-<!--/*  position: relative;*/-->
-<!--//}-->
-<!--</style>-->
+<style>
+.contentBg {
+  background: linear-gradient(to right, rgba(245, 245, 245, .8), rgba(245, 245, 245, .8)), url(../src/assets/common-bg.svg);
+  height: 100vh;
+  min-height: 73rem;
+  position: relative;
+}
+</style>
