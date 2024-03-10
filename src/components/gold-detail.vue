@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center mt-40">
-    <div class="tradingview-widget-container__widget" style="height: calc(100% - 32px); width: 100%"></div>
+    <div class="tradingview-widget-container__widget" style="height: 600px; width: 100%"></div>
   </div>
 </template>
 
