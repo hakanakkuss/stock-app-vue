@@ -14,7 +14,6 @@ export default {
     if (this.$route.params.code) {
       this.loadTradingViewChart(this.$route.params.code);
     }
-
     this.$watch('$route.params.row.code', (newCode, oldCode) => {
       if (newCode !== oldCode) {
         this.loadTradingViewChart(newCode);
@@ -37,7 +36,7 @@ export default {
         "style": "1",
         "locale": "tr",
         "enable_publishing": false,
-        "allow_symbol_change": true,
+        "allow_symbol_change": false,
         "support_host": "https://www.tradingview.com"
       }`;
       this.$refs.container.appendChild(script);

@@ -1,13 +1,12 @@
 <template>
   <div class="flex items-center justify-center mt-40">
-    <div class="tradingview-widget-container__widget" style="height: calc(100% - 32px); width: 100%"></div>
+    <div class="tradingview-widget-container__widget" style="height: 600px; width: 100%"></div>
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    // TradingView Widget'ını yükleme
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
@@ -15,7 +14,7 @@ export default {
     script.innerHTML = `
       {
         "autosize": true,
-        "symbol": "XAUTRY1!",
+        "symbol": "GOLD",
         "interval": "D",
         "timezone": "exchange",
         "theme": "dark",
@@ -26,7 +25,6 @@ export default {
         "calendar": true,
       }
     `;
-    // Widget container'a script'i ekleme
     this.$el.querySelector('.tradingview-widget-container__widget').appendChild(script);
   },
 };
