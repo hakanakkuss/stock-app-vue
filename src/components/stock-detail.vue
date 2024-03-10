@@ -8,22 +8,20 @@
   </div>
 </template>
 
-<script setup>
-  import {onMounted} from "vue";
-
-  onMounted(() => {
+<script>
+export default {
+  mounted() {
     if (this.$route.params.code) {
       this.loadTradingViewChart(this.$route.params.code);
     }
-
     this.$watch('$route.params.row.code', (newCode, oldCode) => {
       if (newCode !== oldCode) {
         this.loadTradingViewChart(newCode);
       }
     });
-  });
-
-    const loadTradingViewChart = (code) => {
+  },
+  methods: {
+    loadTradingViewChart(code) {
       const script = document.createElement('script');
       script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
       script.type = 'text/javascript';
@@ -38,11 +36,12 @@
         "style": "1",
         "locale": "tr",
         "enable_publishing": false,
-        "allow_symbol_change": true,
+        "allow_symbol_change": false,
         "support_host": "https://www.tradingview.com"
       }`;
       this.$refs.container.appendChild(script);
-    };
-
+    },
+  },
+};
 </script>
 

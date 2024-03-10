@@ -16,3 +16,4 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 app.use(store);
 app.mount('#app');
+

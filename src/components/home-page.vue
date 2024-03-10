@@ -52,7 +52,7 @@ const searchText = ref('');
 const store = useStore();
 
     onMounted(() => {
-      // fetchData()
+      fetchData()
       const favorites = localStorage.getItem('favorites');
       if (favorites) {
         favoritesArray.value = JSON.parse(favorites);
@@ -86,7 +86,7 @@ const store = useStore();
       });
     });
     const fetchData = () => {
-      axios.get('https://ca79813d-1c69-48a7-86d6-318a2de6a65c.mock.pstmn.io/stocks')
+      axios.get('https://c28c32a8-dafe-42d2-a2f8-2cbb85eafa58.mock.pstmn.io/stocks')
           .then(response => {
             stocks.value = response.data.result;
           })

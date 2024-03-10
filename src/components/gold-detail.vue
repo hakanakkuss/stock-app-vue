@@ -14,7 +14,7 @@ export default {
     script.innerHTML = `
       {
         "autosize": true,
-        "symbol": "XAUTRY1!",
+        "symbol": "GOLD",
         "interval": "D",
         "timezone": "exchange",
         "theme": "dark",

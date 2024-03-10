@@ -15,7 +15,7 @@
     "firebase": "^10.8.0",
     "postcss": "^8.4.33",
     "vue": "^3.3.11",
-    "vue-router": "^4.2.5",
+    "vue-router": "^4.3.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
